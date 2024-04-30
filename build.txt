@@ -1,0 +1,8 @@
+mkdir -p ~/esp
+cd ~/esp
+git clone -b v3.3 --recursive https://github.com/espressif/esp-idf.git esp-idfv3.3
+export IDF_PATH=~/esp/esp-idfv3.3
+cd ~/esp/ZX-Spectrum-odroid-go
+make menuconfig
+make -j9
+./mkfw.sh
