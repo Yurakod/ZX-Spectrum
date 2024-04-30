@@ -1,0 +1,18 @@
+
+#Створення з джерела.
+
+Вам потрібне середовище збірки esp-idf із кількома модифікаціями на його основі.
+
+1) Підтримка SD-карти — якщо ви ще не завантажили фреймворк esp-idf, замість цього отримайте виправлену версію від Crashoverride:
+
+https://github.com/OtherCrashOverride/esp-idf/tree/release/v3.1-odroid
+
+або замініть esp-idf/components/driver/sdspi_host.c на той, що включений тут.
+
+(посилання: https://forum.odroid.com/viewtopic.php?f=160&t=31383 )
+
+2) запобігти збоям SPI - відредагуйте файл: esp-idf/components/driver/spi_master.c і закоментуйте або повністю видаліть рядок:
+
+SPI_CHECK((handle->cfg.flags & SPI_DEVICE_HALFDUPLEX) || trans_desc->rxlength <= trans_desc->length, "довжина rx > довжина tx у повнодуплексному режимі", ESP_ERR_INVALID_ARG);
+
+(посилання: https://forum.odroid.com/viewtopic.php?f=160&t=31494#p228315 )
